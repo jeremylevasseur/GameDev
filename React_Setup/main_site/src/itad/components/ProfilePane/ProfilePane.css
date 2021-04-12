@@ -1,0 +1,145 @@
+.form-container {
+  margin: 100px auto;
+  width: 70%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 10px;
+  height: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  top: 120px;
+  z-index: 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  font-size: 1.5rem;
+  z-index: 1;
+  color: #fff;
+  cursor: pointer;
+}
+
+.form-content-left {
+  background: linear-gradient(
+    90deg,
+    rgb(6, 11, 38) 0%,
+    rgb(63, 71, 117) 100%
+  );
+  border-radius: 10px 0 0 10px;
+  position: relative;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+}
+
+.profile-title {
+  height: 820px;
+  position: relative;
+  top: 45%;
+  color: #fff;
+}
+
+.form-img {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-img-2 {
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-success {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 0px;
+  color: #fff;
+}
+
+.form-content-right {
+  border-radius: 0 10px 10px 0;
+  position: relative;
+  background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
+}
+
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: auto;
+}
+
+.form h1 {
+  font-size: 1rem;
+  text-align: start;
+  width: 80%;
+  color: #fff;
+}
+
+.form-inputs {
+  width: 80%;
+}
+
+.form-inputs p {
+  font-size: 0.8rem;
+  color: #f00e0e;
+}
+
+.form-label {
+  font-size: 2vh;
+  color: #fff;
+}
+
+.form-value {
+  color: #fff;
+  font-size: 2vh;
+}
+
+.edit-profile-container {
+  position: relative;
+  width: 200%;
+  align-content: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #fff;
+  background: #060b26;
+  font-size: 40px;
+  height: 100%;
+}
+
+.edit-profile-container:hover {
+  background: linear-gradient(90deg, #060b26 0%, rgb(57, 65, 134) 100%);
+  cursor: pointer;
+}
+
+.edit-profile-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.edit-profile-title {
+  text-align: center;
+}

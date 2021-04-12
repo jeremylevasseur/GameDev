@@ -1,0 +1,20 @@
+
+.topBar {
+    margin: 1%;
+}
+
+.logOut {
+    position: fixed;
+    bottom:2%;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+#logOutButton {
+    font-family: Arial;
+}
+
+.spacer {
+    height: 400px;
+    /* margin: 300px; */
+}

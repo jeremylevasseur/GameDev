@@ -1,0 +1,38 @@
+.home,
+.reports,
+.team,
+.profile,
+.support {
+  max-width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-family: 'Encode Sans Expanded', sans-serif;
+}
+
+.team {
+  background-image: url("./itad/images/img-1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+.reports {
+  background-image: url("./itad/images/img-2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #060b26;
+}
+
+.support {
+  background-image: url("./itad/images/img-3.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #060b26;
+}

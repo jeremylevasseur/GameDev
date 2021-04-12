@@ -1,0 +1,59 @@
+version: '3.5'
+
+services:
+    # Container that runs MySQL database  -  Uncomment block if you want a SQL database
+    # mysql1:
+    #     container_name: mysql1
+    #     image: mysql:5.7
+    #     restart: always
+    #     environment:
+    #         - MYSQL_ROOT_PASSWORD=secret
+    #         - TZ=US/Eastern
+    #     ports:
+    #         - '3306:3306'
+    #     expose:
+    #         - '3306'
+    #     networks:
+    #         - app-network
+    #     volumes:
+    #         -   type: bind
+    #             source: ./docker_db
+    #             target: /docker-entrypoint-initdb.d
+
+
+    # Container that runs the REST API (Node.js)  -  Uncomment block if you want a REST API
+    # nodejs:
+    #     container_name: nodejs
+    #     restart: always
+    #     build: .
+    #     depends_on:
+    #         - mysql1
+    #     ports:
+    #         - "8085:8085"
+    #     expose:
+    #         - "8085"
+    #     links:
+    #         - mysql1
+    #     networks:
+    #         - app-network
+    
+
+    # Container that runs the NGINX server
+    webserver:
+        container_name: webserver
+        build: ./website/.
+        restart: always
+        tty: true
+        volumes:
+            - ./website:/var/www
+            - ./conf.d/:/etc/nginx/conf.d/
+        ports:
+            - "85:85"
+            - "443:443"
+        expose:
+            - "85"
+        networks:
+            - app-network
+networks:
+    app-network:
+        driver: bridge

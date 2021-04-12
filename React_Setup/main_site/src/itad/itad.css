@@ -1,0 +1,361 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  height: 100%;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-align: center;
+  font-family: Poppins-Regular;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666666;
+  margin: 0px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+a:focus {
+  outline: none !important;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #050505;
+}
+
+input {
+  outline: none;
+  border: none;
+  font-family: Poppins-SemiBold;
+  font-size: 18px;
+  color: #202020;
+  line-height: 1.2;
+
+  display: block;
+  width: 100%;
+  height: 52px;
+  background: transparent;
+  padding: 0 5px;
+}
+
+textarea {
+  outline: none;
+  border: none;
+}
+
+textarea:focus,
+input:focus {
+  border-color: transparent !important;
+}
+
+ul,
+li {
+  margin: 0px;
+  list-style-type: none;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  outline: none !important;
+  border: none;
+  background: transparent;
+
+  font-family: Poppins-Medium;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  height: 50px;
+  background-color: #252525;
+  border-radius: 25px;
+
+  box-shadow: 0 10px 30px 0px rgba(44, 48, 44, 0.5);
+  -moz-box-shadow: 0 10px 30px 0px rgba(59, 63, 58, 0.5);
+  -webkit-box-shadow: 0 10px 30px 0px rgba(37, 44, 35, 0.5);
+  -o-box-shadow: 0 10px 30px 0px rgba(75, 80, 74, 0.5);
+  -ms-box-shadow: 0 10px 30px 0px rgba(51, 54, 51, 0.5);
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #525151;
+  box-shadow: 0 10px 30px 0px rgba(51, 51, 51, 0.5);
+  -moz-box-shadow: 0 10px 30px 0px rgba(51, 51, 51, 0.5);
+  -webkit-box-shadow: 0 10px 30px 0px rgba(51, 51, 51, 0.5);
+  -o-box-shadow: 0 10px 30px 0px rgba(51, 51, 51, 0.5);
+  -ms-box-shadow: 0 10px 30px 0px rgba(51, 51, 51, 0.5);
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+input:focus:-moz-placeholder {
+  color: transparent;
+}
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+textarea:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+textarea:focus:-moz-placeholder {
+  color: transparent;
+}
+textarea:focus::-moz-placeholder {
+  color: transparent;
+}
+textarea:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+input::-webkit-input-placeholder {
+  color: #635f5f;
+}
+input:-moz-placeholder {
+  color: #635f5f;
+}
+input::-moz-placeholder {
+  color: #635f5f;
+}
+input:-ms-input-placeholder {
+  color: #635f5f;
+}
+
+textarea::-webkit-input-placeholder {
+  color: #635f5f;
+}
+textarea:-moz-placeholder {
+  color: #635f5f;
+}
+textarea::-moz-placeholder {
+  color: #635f5f;
+}
+textarea:-ms-input-placeholder {
+  color: #635f5f;
+}
+
+.row {
+  width: 100%;
+}
+
+.loginElement,
+.registerElement {
+  margin: 30px auto;
+  position: relative;
+  width: 390px;
+}
+
+.loginElement input {
+  margin: 30px auto;
+  position: relative;
+  border-bottom: 2px solid #d9d9d9;
+  width: 390px;
+}
+
+.registerElement input {
+  margin: 30px auto;
+  position: relative;
+  border-bottom: 2px solid #d9d9d9;
+  width: 390px;
+}
+
+.loginTitle,
+.registerTitle {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.optionsElement {
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/*---------------------------------------------*/
+.focusLoginInput,
+.focusRegisterInput {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.focusLoginInput::before,
+.focusRegisterInput::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  background: #303030;
+}
+
+.focusLoginInput::after,
+.focusRegisterInput::after {
+  font-family: Poppins-Medium;
+  font-size: 18px;
+  color: #999999;
+  line-height: 1.2;
+
+  content: attr(data-placeholder);
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 15px;
+  left: 0px;
+  padding-left: 5px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.loginInput:focus + .focusLoginInput::after {
+  top: -20px;
+  font-size: 15px;
+}
+
+.loginInput:focus + .focusLoginInput::before {
+  width: 100%;
+}
+
+.has-val.loginInput + .focusLoginInput::after {
+  top: -20px;
+  font-size: 15px;
+}
+
+.has-val.loginInput + .focusLoginInput::before {
+  width: 100%;
+}
+
+.registerInput:focus + .focusRegisterInput::after {
+  top: -20px;
+  font-size: 15px;
+}
+
+.registerInput:focus + .focusRegisterInput::before {
+  width: 100%;
+}
+
+.has-val.registerInput + .focusRegisterInput::after {
+  top: -20px;
+  font-size: 15px;
+}
+
+.has-val.registerInput + .focusRegisterInput::before {
+  width: 100%;
+}
+
+.txt1 {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #999999;
+  line-height: 1.5;
+}
+
+.txt2 {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #555555;
+  line-height: 1.5;
+}
+
+.login-more li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.login-more li::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  top: 45%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 0;
+}
+
+.register-more li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.register-more li::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  top: 45%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 0;
+}
+
+.errorMessage {
+  color: "red";
+  text-align: "center";
+  font-size: "20px";
+}
+
+.spacer {
+  height: 100px;
+}
