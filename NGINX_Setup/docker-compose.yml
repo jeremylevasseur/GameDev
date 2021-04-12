@@ -21,14 +21,14 @@ services:
             - app-network
 
     # Container that runs the NGINX server
-    webserver:
-        container_name: webserver
-        build: ./website/.
+    web_server:
+        container_name: web_server
+        build: ./web_server/.
         restart: always
         tty: true
         volumes:
-            - ./website:/var/www
-            - ./website/conf.d/:/etc/nginx/conf.d/
+            - ./web_server:/var/www
+            - ./web_server/conf.d/:/etc/nginx/conf.d/
         ports:
             - "85:85"
         networks:
