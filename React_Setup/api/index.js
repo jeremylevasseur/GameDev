@@ -18,10 +18,10 @@ app.use((req, res, next) => {
 
 app.use(express.static('uploads'));
 
-var itadRoutes = require('./routes/itad/itad');
+var generalRoutes = require('./routes/general/general');
 
 // API routes for the iTAD application
-app.use('/api/itad', itadRoutes);
+app.use('/api/general', generalRoutes);
 
 app.listen(8081, () => {
     console.log("Server is up and listening on 8081..");

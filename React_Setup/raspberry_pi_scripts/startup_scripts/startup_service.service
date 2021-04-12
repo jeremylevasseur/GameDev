@@ -1,8 +1,0 @@
-[Unit]
-After=network.service
-
-[Service]
-ExecStart=/bin/bash /usr/bin/startup_service.sh
-
-[Install]
-WantedBy=default.target
