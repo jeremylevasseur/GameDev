@@ -1,16 +1,16 @@
 # Game Dev Environment
 
-This repository contains two separate directories: NGINX_Setup and React_Setup. They are to allow for experimentation with either an NGINX web server or the React Framework server.
+This repository contains two separate directories: **NGINX_Setup** and **React_Setup**. They are to allow for experimentation with either an NGINX web server or the React Framework server.
 
 The two setups use Docker to run the required components. Both setups contain four separate apps running in their own Docker containers. They are the following:
 
-- Reverse Proxy
+- **Reverse Proxy**
 
-- Web Server (either NGINX or React)
+- **Web Server** (either NGINX or React)
 
-- REST API (powered by Node.js)
+- **REST API** (powered by Node.js)
 
-- Database (a MySQL database)
+- **Database** (a MySQL database)
 
 The reason for having each of these containers is explained below. To get started, the first step is to make sure you have Git installed on your computer.
 
