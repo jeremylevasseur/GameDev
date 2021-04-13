@@ -2,23 +2,83 @@
 <html>
   <head>
     <title>Socket.IO chat</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
     <!-- Importing Third Party JavaScript Files -->
     <script src="/js/thirdpartylibs/jquery-3.6.0.js"></script>
 
     <!-- Importing Custom CSS Files -->
+    <link href="/css/main.css" rel="stylesheet" />
     <link href="/css/page1.css" rel="stylesheet" />
   </head>
-  <!-- <script src="/socket.io/socket.io.js"></script> -->
+  <!-- Importing Socket IO File -->
   <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
-  <script>
-    
-
-  </script>
   <body>
-    <ul id="messages"></ul>
-    <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
-    </form>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+      <div class="navbar-title">
+        <h1>
+          <a href="/html/page1.html">Game Development</a>
+        </h1>
+      </div>
+    </div>
+
+    <section id="maincontent">
+      <div class="container">
+
+        <div class="row">
+          <div class="heading-container">
+            <div class="heading-text">
+              You are 
+            </div>
+            <div class="heading-image">
+              <img id="symbol-statement" src="/img/Q.png" />
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          
+          <div class="grid-container">
+            <div class="grid-item" id="zero-zero">
+              <img id="zero-zero-img" alt=""/>
+            </div>
+            <div class="grid-item" id="zero-one">
+              <img id="zero-one-img" alt=""/>
+            </div>
+            <div class="grid-item" id="zero-two">
+              <img id="zero-two-img" alt=""/>
+            </div>
+            <div class="grid-item" id="one-zero">
+              <img id="one-zero-img" alt=""/>
+            </div>
+            <div class="grid-item" id="one-one">
+              <img id="one-one-img" alt=""/>
+            </div>
+            <div class="grid-item" id="one-two">
+              <img id="one-two-img" alt=""/>
+            </div>
+            <div class="grid-item" id="two-zero">
+              <img id="two-zero-img" alt=""/>
+            </div>
+            <div class="grid-item" id="two-one">
+              <img id="two-one-img" alt=""/>
+            </div>
+            <div class="grid-item" id="two-two">
+              <img id="two-two-img" alt=""/>
+            </div>
+          </div> 
+
+        </div>
+      </div>
+
+      <div id="game-status-message">Waiting for opponent...</div>
+      
+    </section>
 
     <!-- Importing Custom Javascript Files -->
     <script src="/js/page1.js"></script>
