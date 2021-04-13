@@ -46,12 +46,12 @@ body {
 }
 
 .container {
-    margin: 3rem 2rem;
+    margin: 2rem 2rem;
 }
 
 .row {
     width: 100%;
-    margin: 2rem 4rem;
+    margin: 0rem 4rem 2rem 4rem;
     font-weight: bold;
     font-size: 20px;
 }

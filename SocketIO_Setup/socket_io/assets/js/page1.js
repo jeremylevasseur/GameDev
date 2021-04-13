@@ -13,6 +13,7 @@ let socket = io.connect(url);
 var basePicturePath = "/img/";
 var myTurn = true;
 var symbol;
+var dots;
 
 // This function runs when the page loads
 jQuery(document).ready(function ($) {
@@ -54,6 +55,12 @@ jQuery(document).ready(function ($) {
     attemptToMakeMove("two-two-img");
   });
 
+
+  // Setting an on click function for the play again button
+  $("#play-again-button").click(function () {
+    console.log("Play again button was clicked.");
+  });
+
 });
 
 
@@ -78,7 +85,7 @@ function getBoardData() {
 
 }
 
-function checkIfGameIsFinished() {
+function checkIfSomeoneWon() {
   var boardData = getBoardData();  // Getting board data
 
   matches = ["XXX", "OOO"];  // Game is over if one of these matches is made
@@ -111,12 +118,35 @@ function checkIfGameIsFinished() {
   return false;
 }
 
+function checkIfAllMovesHaveBeenPlayed() {
+  var boardData = getBoardData();  // Getting board data
+  var boardValues = Object.values(boardData);  // Will contain a list of the values in each grid item
+
+  for (var i = 0; i < boardValues.length; i++) {
+    if (boardValues[i] === '') {
+      // Found an empty grid item, the game is not over
+      return false;
+    }
+  }
+
+  // Did not find an empty grid item, the game is over
+  return true;
+}
+
 // Updating the turn message that is displayed on screen
 function updateTurnMessages() {
   if (!myTurn) {
     $("#game-status-message").text("Your opponent's turn");
+    // Decreasing grid opacity
+    $('.grid-container').fadeTo("fast" , 0.5, function() {});
+    // Beginning wait animation
+    startWaitingAnimation();
   } else {
     $("#game-status-message").text("Your turn.");
+    // Increasing grid opacity
+    $('.grid-container').fadeTo("fast" , 1, function() {});
+    // Stopping wait animation
+    stopWaitingAnimation();
   }
 }
 
@@ -124,13 +154,11 @@ function attemptToMakeMove(imgId) {
 
   // It is not the player's turn
   if (!myTurn) {
-    console.log("It is not your turn!");
     return;
   }
 
   // The clicked grid item has already been chosen
   if ($('#' + imgId).attr("alt").length) {
-    console.log("That space has already been taken!");
     return;
   }
 
@@ -141,6 +169,23 @@ function attemptToMakeMove(imgId) {
   });
 
 }
+
+function startWaitingAnimation() {
+  $('#wait').css({visibility: 'visible'});
+  dots = window.setInterval( function() {
+    var wait = document.getElementById("wait");
+    if ( wait.innerHTML.length > 2 ) 
+        wait.innerHTML = "";
+    else 
+        wait.innerHTML += ".";
+    }, 300);
+}
+
+function stopWaitingAnimation() {
+  clearInterval(dots);
+  $('#wait').css({visibility: 'hidden'});
+}
+
 
 // This block is run when a move is made by either player
 socket.on("move.made", function(data) {
@@ -161,14 +206,9 @@ socket.on("move.made", function(data) {
   }
 
   // Checking to see if the three-in-a-line has been made
-  if (!checkIfGameIsFinished()) {
+  if (checkIfSomeoneWon()) {
 
-    // The game is not over yet, move to the next turn
-    updateTurnMessages();
-
-    
-  } else {
-
+    // The game has been won
     // Changing message to result of the game
     if (myTurn) {
       $("#game-status-message").text("Game over. You lost.");
@@ -176,8 +216,33 @@ socket.on("move.made", function(data) {
       $("#game-status-message").text("Game over. You won!");
     }
 
+    // Stopping wait animation
+    stopWaitingAnimation();
+    $('.grid-container').fadeTo("fast" , 1, function() {});
+
     // Disabling the board because the game is over
     $(".grid-container *").attr("disabled", true).off('click');
+
+    // Make play again button visible
+    $('#play-again-button').css({display: 'inline'});
+
+  } else if(checkIfAllMovesHaveBeenPlayed()) {
+
+    // Stopping wait animation and bringing opacity back
+    stopWaitingAnimation();
+    $('.grid-container').fadeTo("fast" , 1, function() {});
+    
+    // There are no more positions left to play so it was a draw
+    $("#game-status-message").text("It's a draw!");
+    
+    // Disabling the board because the game is over
+    $(".grid-container *").attr("disabled", true).off('click');
+
+  } else {
+
+    // The game is not over yet, move to the next turn
+    updateTurnMessages();
+
   }
 });
 
@@ -189,6 +254,9 @@ socket.on("game.begin", function(data) {
 
   // Assiging image to the symbol statement
   $('#symbol-statement').attr("src", basePicturePath + data.symbol + ".png");
+
+  // Making the apostrophe s visible
+  $('#symbol-statement-plural').css({visibility: 'visible'});
 
   // If my symbol is X then I go first
   if (symbol === "X") {

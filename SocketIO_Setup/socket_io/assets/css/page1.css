@@ -11,12 +11,16 @@
 }
 
 .heading-image {
-  margin-left: 5rem;
+  margin-left: 2rem;
 }
 
 .heading-image img {
   width: 50px;
   height: 50px;
+}
+
+#symbol-statement-plural {
+  visibility: hidden;
 }
 
 .container {
@@ -49,7 +53,36 @@
   max-height: 100px;
 }
 
-.game-status-message {
+#game-status-message-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-status-message {
   font-size: 25px;
   font-weight: bold;
+}
+
+#wait {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#play-again-button {
+  margin: 4rem 0;
+  background-color: #1E1E1E;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px 120px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: none;
+}
+
+#play-again-button:hover {
+  transform: scale(1.2, 1.2);
 }
