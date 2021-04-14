@@ -52,6 +52,7 @@ io.on("connection", (socket) => {
 
 var players = {};
 var unmatched;
+var playAgainConfirmation = 0;
 
 function joinGame(socket) {
   
@@ -87,18 +88,63 @@ function getOpponent(socket) {
   return players[players[socket.id].opponent].socket;
 }
 
+function getOppositeSymbol(originalSymbol) {
+  if (originalSymbol === "X") {
+    return "O";
+  } else {
+    return "X";
+  }
+}
+
 io.on("connection", function(socket) {
+
+  var socketOpponent;
+  var player1LastSymbol;
+  var player2LastSymbol;
+  var address;
+  var addressOpponent;
+
   joinGame(socket);
 
   // Once the socket has an opponent, we can begin the game
   if (getOpponent(socket)) {
-    socket.emit("game.begin", {
-      symbol: players[socket.id].symbol
-    });
 
-    getOpponent(socket).emit("game.begin", {
-      symbol: players[getOpponent(socket).id].symbol
-    });
+    socketOpponent = getOpponent(socket);
+
+    address = socket.handshake.address;
+    addressOpponent = socketOpponent.handshake.address;
+
+    if (address !== addressOpponent) {
+
+      socket.emit("game.begin", {
+        symbol: players[socket.id].symbol,
+        yourAddress: address,
+        opponentAddress: addressOpponent,
+        rematch: false
+      });
+  
+      socketOpponent.emit("game.begin", {
+        symbol: players[getOpponent(socket).id].symbol,
+        yourAddress: addressOpponent,
+        opponentAddress: address,
+        rematch: false
+      });
+
+      player1LastSymbol = players[socket.id].symbol;
+      player2LastSymbol = players[getOpponent(socket).id].symbol;
+
+    } else {
+
+      players[socket.id] = {
+        opponent: null,
+        symbol: "X",
+        socket: socket
+      };
+
+      unmatched = socket.id;
+
+    }
+
   }
 
   /*
@@ -106,6 +152,7 @@ io.on("connection", function(socket) {
     players after the move is completed
   */
   socket.on("make.move", function(data) {
+    // Making sure they're still connected
     if (!getOpponent(socket)) {
       return;
     }
@@ -113,6 +160,73 @@ io.on("connection", function(socket) {
     // Emit that move made to the two players
     socket.emit("move.made", data);
     getOpponent(socket).emit("move.made", data);
+
+  });
+
+  socket.on("game.finished", function(data) {
+    // Making sure they're still connected
+    if (!getOpponent(socket)) {
+      return;
+    }
+
+    playAgainConfirmation = 0;
+
+  });
+
+  socket.on("kill.session", function(data) {
+    // Making sure they're still connected
+    if (!getOpponent(socket)) {
+      return;
+    }
+
+    playAgainConfirmation = 3;
+
+  });
+
+  socket.on("play.again", function(data) {
+    // Making sure they're still connected
+    if (!getOpponent(socket)) {
+      return;
+    }
+
+    socketOpponent = getOpponent(socket);
+
+    address = socket.handshake.address;
+    addressOpponent = socketOpponent.handshake.address;
+
+    console.log(playAgainConfirmation);
+    playAgainConfirmation += 1;
+    console.log(playAgainConfirmation);
+
+    if (playAgainConfirmation == 2) {
+
+      var player1NewSymbol = getOppositeSymbol(player1LastSymbol);
+      var player2NewSymbol = getOppositeSymbol(player2LastSymbol);
+
+      if (player1NewSymbol === player2NewSymbol) {
+        player1NewSymbol = "X";
+        player2NewSymbol = "O";
+      }
+
+      socket.emit("game.begin", {
+        symbol: player1NewSymbol,
+        yourAddress: address,
+        opponentAddress: addressOpponent,
+        rematch: true
+      });
+  
+      socketOpponent.emit("game.begin", {
+        symbol: player2NewSymbol,
+        yourAddress: addressOpponent,
+        opponentAddress: address,
+        rematch: true
+      });
+
+      player1LastSymbol = player1NewSymbol;
+      player2LastSymbol = player2NewSymbol;
+
+      playAgainConfirmation = 0;
+    }
 
   });
 

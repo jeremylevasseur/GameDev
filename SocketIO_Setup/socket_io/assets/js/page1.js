@@ -11,13 +11,22 @@
 const url = window.location.origin;
 let socket = io.connect(url);
 var basePicturePath = "/img/";
+var gameIsOver = false;
 var myTurn = true;
 var symbol;
 var dots;
+var yourAddress = "";
+var opponentAddress = "";
+var playAgainTimeout;
+var waitingCycles = 0;
 
 // This function runs when the page loads
 jQuery(document).ready(function ($) {
   
+  $(".grid-item").click(function () {
+    console.log("CLICKED");
+  });
+
   // Setting on click functions for the nine separate grid items
   $("#zero-zero").click(function () {
     attemptToMakeMove("zero-zero-img");
@@ -58,10 +67,48 @@ jQuery(document).ready(function ($) {
 
   // Setting an on click function for the play again button
   $("#play-again-button").click(function () {
-    console.log("Play again button was clicked.");
+    socket.emit("play.again", {
+      address: yourAddress,
+      symbol: symbol
+    });
+
+    waitingCycles = 0;
+
+    displayFullScreenLoading();
+
+    waitForPlayAgainResponse();
+
+  });
+
+  // Setting an on click function for the find new opponent button
+  $("#find-new-opponent-button").click(function () {
+    location.reload();
+    return false;
   });
 
 });
+
+
+function waitForPlayAgainResponse() {
+
+  if (waitingCycles === 1) {
+    clearTimeout(playAgainTimeout);
+    hideFullScreenLoading();
+
+    socket.emit("kill.session", {});
+
+    $('#play-again-button').css({display: 'none'});
+    $("#game-status-message").text("Your opponent left the game.");
+    $('#find-new-opponent-button').css({display: 'inline'});
+
+    return false;
+  }
+
+  playAgainTimeout = setTimeout(waitForPlayAgainResponse, 10000);
+
+  waitingCycles += 1;
+
+}
 
 
 function getBoardData() {
@@ -151,12 +198,11 @@ function updateTurnMessages() {
 }
 
 function attemptToMakeMove(imgId) {
-
   // It is not the player's turn
-  if (!myTurn) {
+  if (!myTurn || gameIsOver) {
     return;
   }
-
+  
   // The clicked grid item has already been chosen
   if ($('#' + imgId).attr("alt").length) {
     return;
@@ -186,12 +232,31 @@ function stopWaitingAnimation() {
   $('#wait').css({visibility: 'hidden'});
 }
 
+function displayFullScreenLoading() {
+  document.getElementById("spinner-back").classList.add("show");
+  document.getElementById("spinner-front").classList.add("show");
+}
+
+function hideFullScreenLoading() {
+  document.getElementById("spinner-back").classList.remove("show");
+  document.getElementById("spinner-front").classList.remove("show");
+}
+
+
+function resetBoard() {
+  $(".grid-container img").each(function () {
+    $(this).prop("alt", "");
+    $(this).css({opacity: '0'});
+  });
+}
+
 
 // This block is run when a move is made by either player
 socket.on("move.made", function(data) {
 
   // Setting the grid image to the symbol that was passed by the server
   $("#" + data.position).attr("src", basePicturePath + data.symbol + ".png");
+  $("#" + data.position).css({opacity: '1'});
   // Setting the alt property of the image to the symbol
   $("#" + data.position).attr("alt", data.symbol);
 
@@ -220,11 +285,10 @@ socket.on("move.made", function(data) {
     stopWaitingAnimation();
     $('.grid-container').fadeTo("fast" , 1, function() {});
 
-    // Disabling the board because the game is over
-    $(".grid-container *").attr("disabled", true).off('click');
-
     // Make play again button visible
     $('#play-again-button').css({display: 'inline'});
+
+    gameIsOver = true;
 
   } else if(checkIfAllMovesHaveBeenPlayed()) {
 
@@ -234,9 +298,11 @@ socket.on("move.made", function(data) {
     
     // There are no more positions left to play so it was a draw
     $("#game-status-message").text("It's a draw!");
-    
-    // Disabling the board because the game is over
-    $(".grid-container *").attr("disabled", true).off('click');
+
+    // Make play again button visible
+    $('#play-again-button').css({display: 'inline'});
+
+    gameIsOver = true;
 
   } else {
 
@@ -244,19 +310,40 @@ socket.on("move.made", function(data) {
     updateTurnMessages();
 
   }
+
+  if (gameIsOver) {
+    socket.emit("game.finished", {});
+  }
+
 });
 
 // Setting preconditions when the server gives the game.begin signal
 socket.on("game.begin", function(data) {
+  console.log(data.rematch);
+
+  if (data.rematch) {
+    clearTimeout(playAgainTimeout);
+    hideFullScreenLoading();
+    // Make play again button invisible
+    $('#play-again-button').css({display: 'none'});
+    resetBoard();
+    gameIsOver = false;
+  }
   
   // Assigning symbol
   symbol = data.symbol;
+  yourAddress = String(data.yourAddress);
+  opponentAddress = String(data.opponentAddress);
 
   // Assiging image to the symbol statement
   $('#symbol-statement').attr("src", basePicturePath + data.symbol + ".png");
 
   // Making the apostrophe s visible
   $('#symbol-statement-plural').css({visibility: 'visible'});
+
+  $('#address-wrap').css({display: 'flex'});
+  $('#your-address').text(yourAddress);
+  $('#opponent-address').text(opponentAddress);
 
   // If my symbol is X then I go first
   if (symbol === "X") {
@@ -270,8 +357,16 @@ socket.on("game.begin", function(data) {
 
 // If the opponent leaves the game, the board needs to be disabled
 socket.on("opponent.left", function() {
-  $("#game-status-message").text("Your opponent left the game.");
-  $(".grid-container *").attr("disabled", "disabled").off('click');
+
+  if (!gameIsOver) {
+    $("#game-status-message").text("Your opponent left the game.");
+    $('#find-new-opponent-button').css({display: 'inline'});
+  } else {
+    $('#play-again-button').css({display: 'none'});
+    $("#game-status-message").text("Your opponent left the game.");
+    $('#find-new-opponent-button').css({display: 'inline'});
+  }
+
 });
 
 
