@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const http = require("http");
-const server = http.Server(app).listen(3000);  // Setting the server port to 3000
+const server = http.Server(app).listen(8085);  // Setting the server port to 8085
 const io = require("socket.io")(server);  // Setting up Socket IO
 const fs = require("fs");
 
@@ -194,9 +194,7 @@ io.on("connection", function(socket) {
     address = socket.handshake.address;
     addressOpponent = socketOpponent.handshake.address;
 
-    console.log(playAgainConfirmation);
     playAgainConfirmation += 1;
-    console.log(playAgainConfirmation);
 
     if (playAgainConfirmation == 2) {
 
