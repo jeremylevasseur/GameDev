@@ -1,0 +1,159 @@
+.heading-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading-text {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.heading-image {
+  margin-left: 2rem;
+}
+
+.heading-image img {
+  width: 50px;
+  height: 50px;
+}
+
+#symbol-statement-plural {
+  visibility: hidden;
+}
+
+
+#address-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  margin: 1rem 0;
+}
+
+#your-address, #opponent-address {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#vs {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #1E1E1E;
+  padding: 10px;
+}
+
+.grid-item {
+  min-width: 100px;
+  min-height: 100px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.grid-item:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.grid-item img {
+  color: transparent;
+  max-width: 100px;
+  max-height: 100px;
+}
+
+#game-status-message-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-status-message {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#wait {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#play-again-button {
+  margin: 2rem 0;
+  background-color: #1E1E1E;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px 120px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: none;
+}
+
+#play-again-button:hover {
+  transform: scale(1.2, 1.2);
+}
+
+#find-new-opponent-button {
+  margin: 4rem 0;
+  background-color: #1E1E1E;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px 120px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: none;
+}
+
+#find-new-opponent-button:hover {
+  transform: scale(1.2, 1.2);
+}
+
+/* [FULL SCREEN SPINNER] */
+#spinner-back, #spinner-front {
+  position: fixed;
+  width: 100vw;
+  transition: all 1s;
+  visibility: hidden;
+  opacity: 0;
+}
+#spinner-back {
+  z-index: 998;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+}
+#spinner-front {
+  z-index: 999;
+  color: #fff;
+  text-align: center;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+}
+#spinner-back.show, #spinner-front.show {
+  visibility: visible;
+  opacity: 1;
+}
