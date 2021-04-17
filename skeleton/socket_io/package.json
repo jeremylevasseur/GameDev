@@ -1,0 +1,12 @@
+{
+    "name": "free-roam",
+    "version": "0.0.1",
+    "description": "Free Roam",
+    "dependencies": {
+        "express": "^4.17.1",
+        "socket.io": "^4.0.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    }
+}

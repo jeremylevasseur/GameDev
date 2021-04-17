@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+
+    # Container that runs Socket IO
+    socket_io:
+        container_name: socket_io
+        restart: always
+        build: ./socket_io/.
+        volumes:
+            - ./socket_io:/usr/src/app
+        ports:
+            - "8084:8084"
+        expose:
+            - "8084"
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
