@@ -65,7 +65,7 @@ The terminal output should contain a list of all the files that you have modifie
 
 ---
 
-First, you need to add your changes to the Git *queue*, which will be commited after the next command. To add your changes, execute the following command.
+First, you need to add your changes to the Git *queue*, which will be commited after the next command. To add your changes, execute the following command. Make sure you don't miss the period. It represents the current directory and tells Git to add all the changes that occured within this directory.
 ```
 git add .
 ```
