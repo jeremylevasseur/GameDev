@@ -8,11 +8,11 @@ width: 1500,
 height: 800,
 
 {
-    defaultKey: 'playerShip',
-    bounceX: 1,
-    bounceY: 1,
-    collideWorldBounds: true
-  }
+  defaultKey: 'playerShip',
+  bounceX: 1,
+  bounceY: 1,
+  collideWorldBounds: true
+}
 
 */
 
