@@ -1,12 +1,10 @@
 # Add A Commit Streak To Your GitHub Profile
 ---
-
-
 #### Step 1
 ---
 Create a new repository and give it the same name as your username. Make sure the repository has it's visibility set to *Public* and choose to initialize it with a README file by checking the "Add a README file" box. Hit the "Create repository" button, which should bring you to the newly created repository.
 
-
+---
 #### Step 2
 ---
 Once at the new repository page, click the clone drop down button and copy the HTTP url. Head to your terminal and navigate to wherever you want to store this repository. Then run the following command, but instead of the link shown, use the one you copied.
@@ -15,6 +13,7 @@ git clone https://github.com/jeremylevasseur/jeremylevasseur.git
 ```
 You may need to authenticate yourself by either entering your credentials into the terminal prompt, or by entering them into a webpage that pops up in a browser. It depends on your operating system.
 
+---
 #### Step 3
 ---
 The new repository should now be present in the directory you cloned it in. Navigate into it within the terminal. You should see a single file there named *README.md*. Open this file up with your text editor of choice and paste the following chunk in.
@@ -42,7 +41,7 @@ Here are some ideas to get you started:
 -->
 ```
 
-
+---
 #### Step 4
 ---
 You now need to edit the URL within the GitHub Streak line of text. The GitHub username needs to be changed to yours.
@@ -51,7 +50,7 @@ You now need to edit the URL within the GitHub Streak line of text. The GitHub u
 ```
 So, in my case, the <github-username> would change to ```jeremylevasseur```.
 
-
+---
 #### Step 5
 ---
 Now you need to add, commit, and push these changes to the repository. Go back to your terminal and make sure you are located within the repository root directory. The root directory is the one that contains the README.md file.
@@ -63,6 +62,7 @@ Whenever you make changes to a file within your local Git repository, they are k
 git status
 ```
 The terminal output should contain a list of all the files that you have modified.
+
 ---
 
 First, you need to add your changes to the Git *queue*, which will be commited after the next command. To add your changes, execute the following command.
