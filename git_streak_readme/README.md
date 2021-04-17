@@ -46,9 +46,9 @@ Here are some ideas to get you started:
 ---
 You now need to edit the URL within the GitHub Streak line of text. The GitHub username needs to be changed to yours.
 ```
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=<github-username>&theme=dark)]
+[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=github-username&theme=dark)]
 ```
-So, in my case, the <github-username> would change to ```jeremylevasseur```.
+So, in my case, the 'github-username' would change to ```jeremylevasseur```.
 
 ---
 #### Step 5
