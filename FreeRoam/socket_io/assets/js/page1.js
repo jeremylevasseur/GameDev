@@ -58,19 +58,6 @@ function create() {
     collideWorldBounds: true
   });
 
-  // this.ship = this.physics.add.group({
-  //   defaultKey: 'playerShip',
-  //   bounceX: 1,
-  //   bounceY: 1,
-  //   collideWorldBounds: true
-  // });
-
-  // const mummyAnimation = this.anims.create({
-  //   key: 'walk',
-  //   frames: this.anims.generateFrameNumbers('mummy'),
-  //   frameRate: 16
-  // });
-
   this.socket.on('currentPlayers', function (players) {
     Object.keys(players).forEach(function (id) {
       if (players[id].playerId === self.socket.id) {
