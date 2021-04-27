@@ -135,10 +135,10 @@ function getBoardData() {
 function checkIfSomeoneWon() {
   var boardData = getBoardData();  // Getting board data
 
-  matches = ["XXX", "OOO"];  // Game is over if one of these matches is made
+  var matches = ["XXX", "OOO"];  // Game is over if one of these matches is made
 
   // Here is a list of concatenated strings of all the possible winning directions
-  possibleWinningDirections = [
+  var possibleWinningDirections = [
     boardData['zero-zero-img'] + boardData['zero-one-img'] + boardData['zero-two-img'],
     boardData['one-zero-img'] + boardData['one-one-img'] + boardData['one-two-img'],
     boardData['two-zero-img'] + boardData['two-one-img'] + boardData['two-two-img'],
