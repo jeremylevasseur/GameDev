@@ -13,6 +13,10 @@ var basePicturePath = "/img/";
 
 // This function runs when the page loads
 jQuery(document).ready(function ($) {
-    console.log("Home")
+    console.log("Home");
+
+    $('#home-button').click(function() {
+      window.location.replace("/html/authenticate.html");
+    });
 });
 

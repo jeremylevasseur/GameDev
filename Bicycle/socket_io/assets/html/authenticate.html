@@ -19,10 +19,74 @@
     <div class="navbar">
       <div class="navbar-title">
         <h1>
-          <a href="/html/page1.html">Bicycle Login</a>
+          <a href="/html/authenticate.html">Who Are You?</a>
         </h1>
       </div>
     </div>
+
+    <section id="maincontent">
+      <div class="authenticate-content">
+        
+        <div class="login-content">
+
+          <div class="content-title">
+            Log In
+          </div>
+
+          <hr>
+
+          <div id="login-username-content">
+            <input type="text" id="login-username" name="login-username" placeholder="username" />
+          </div>
+
+          <div id="login-password-content">
+            <input type="password" id="login-password" name="login-password" placeholder="password" />
+          </div>
+
+          <div class="content-button-wrap">
+            <div class="content-button" id="login-button">
+              Log In
+            </div>
+          </div>
+
+          <p class="error-message" id="login-error-message"></p>
+
+        </div>
+
+        <div class="signup-content">
+
+          <div class="content-title">
+            Sign Up
+          </div>
+
+          <hr>
+
+          <div id="signup-username-content">
+            <input type="text" id="signup-username" name="signup-username" placeholder="username" />
+          </div>
+
+          <div id="signup-password1-content">
+            <input type="password" id="signup-password1" name="signup-password1" placeholder="password" />
+          </div>
+
+          <div id="signup-password2-content">
+            <input type="password" id="signup-password2" name="signup-password2" placeholder="re-enter password" />
+          </div>
+
+          <div class="content-button-wrap">
+            <div class="content-button" id="signup-button">
+              Sign Up
+            </div>
+          </div>
+
+          <div class="error-message-wrap">
+            <p class="error-message" id="signup-error-message"></p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
     
     <!-- Importing Custom Javascript Files -->
     <script src="/js/authenticate.js"></script>

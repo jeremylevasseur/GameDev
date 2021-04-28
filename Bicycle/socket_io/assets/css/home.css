@@ -1,0 +1,36 @@
+.home-img-wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+#home-img {
+    max-width: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+#home-button {
+    position: absolute;
+    max-width: 300px;
+    padding: 2rem 4rem;
+    background-color: #1E1E1E;
+    border: 5px solid black;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-size: larger;
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#home-button:hover {
+    background-color: #252525;
+    transform: scale(1.1);
+}
+
+#home-bottom {
+    background-color: #1E1E1E;
+    height: 10rem;
+    width: 100%;
+}
