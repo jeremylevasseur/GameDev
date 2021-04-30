@@ -8,31 +8,46 @@
 
 // GLOBAL VARIABLES
 const url = window.location.origin;
+let socket = io.connect(url);
 var basePicturePath = "/img/";
 
 // This function runs when the page loads
 jQuery(document).ready(function ($) {
-  // Check for user JWT
+  // Check for JWT and username
   var userJWT = localStorage.getItem("userJWT");
-  if (userJWT === null) {
+  var username = localStorage.getItem("username");
+  if ( (userJWT === null) || (username === null) ) {
     window.location.replace("/html/authenticate.html");
   }
 
   $("#create-game-button").click(function () {
     var generatedGameId = makeGameId();
     localStorage.setItem("gameId", generatedGameId);
-    window.location.replace("/html/lobby.html");
-  });
 
-  $("#enter-game-id").click(function () {
-    $(".button-wrap").css("visibility", "hidden");
-    $(".join-game-content").css("visibility", "visible");
+    var createRoomData = {
+      gameId: generatedGameId,
+      username: username
+    };
+
+    socket.emit(
+      "createRoom", createRoomData,
+      function (message) {
+        console.log(message);
+      }
+    );
+    
+    window.location.replace("/html/lobby.html");
   });
 
   $("#join-game").click(function () {
-    var enteredGamedId = $("#game-id").val();
-    localStorage.setItem("gameId", enteredGamedId);
-    window.location.replace("/html/lobby.html");
+    var enteredGameId = $("#game-id").val();
+    if (enteredGameId.length < 5) {
+      $('#game-id').css("box-shadow", "0px 0px 6px red");
+    } else {
+      localStorage.setItem("gameId", enteredGameId);
+      window.location.replace("/html/lobby.html");
+    }
+
   });
 
   $("#cancel-join-game").click(function () {
@@ -44,7 +59,7 @@ jQuery(document).ready(function ($) {
 function makeGameId() {
   var result = [];
   var characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   var charactersLength = characters.length;
   for (var i = 0; i < 6; i++) {
     result.push(
@@ -53,4 +68,3 @@ function makeGameId() {
   }
   return result.join("");
 }
-

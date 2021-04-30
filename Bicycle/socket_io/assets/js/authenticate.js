@@ -19,7 +19,8 @@ jQuery(document).ready(function ($) {
 
   // Checking to see if a user has a JWT stored
   var userJWT = localStorage.getItem('userJWT');
-  if (userJWT != null) {
+  var username = localStorage.getItem("username");
+  if ( (userJWT != null) && (username != null) ) {
     window.location.replace("/html/dashboard.html");
   }
 
@@ -74,9 +75,9 @@ function login() {
             $('#login-error-message').text("There is an error within the post request.");
           } else {
             // Successfully logged in
-            console.log("Logged in.");
             var userJWT = data['jwt'];
             localStorage.setItem('userJWT', userJWT);
+            localStorage.setItem('username', enteredLoginUsername);
             clearAllInputs();
             window.location.replace("/html/dashboard.html");
           }
@@ -127,9 +128,9 @@ function signup() {
                 $('#signup-error-message').text("There is an error within the post request.");
               } else {
                 // Successfully signed up
-                console.log("Signed up.");
                 var userJWT = data['jwt'];
                 localStorage.setItem('userJWT', userJWT);
+                localStorage.setItem('username', enteredSignupUsername);
                 clearAllInputs();
                 window.location.replace("/html/dashboard.html");
               }

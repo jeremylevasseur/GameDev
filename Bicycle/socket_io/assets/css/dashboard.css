@@ -10,56 +10,7 @@
     z-index: -1;
 }
 
-.button-wrap {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.create-game-button {
-    /* position: absolute; */
-    margin-bottom: 1rem;
-    max-width: 300px;
-    padding: 2rem 2rem;
-    background-color: #1E1E1E;
-    border: 5px solid black;
-    border-radius: 30px;
-    color: #FFFFFF;
-    font-size: larger;
-    z-index: 999;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.create-game-button:hover {
-    background-color: #252525;
-    transform: scale(1.1);
-}
-
-.join-game-button {
-    /* position: absolute; */
-    margin-bottom: 1rem;
-    max-width: 300px;
-    padding: 2rem 2rem;
-    background-color: #1E1E1E;
-    border: 5px solid black;
-    border-radius: 30px;
-    color: #FFFFFF;
-    font-size: larger;
-    z-index: 999;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.join-game-button:hover {
-    background-color: #252525;
-    transform: scale(1.1);
-}
-
-.join-game-content {
-    visibility: hidden;
+.game-content {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -83,7 +34,57 @@
     box-shadow: 0px 0px 6px black;
 }
 
-#home-bottom {
+.join-game-button {
+    margin: 1rem auto;
+    min-width: 300px;
+    padding: 0.5rem 2rem;
+    background-color: #1E1E1E;
+    border: 5px solid black;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-size: larger;
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.join-game-button:hover {
+    background-color: #252525;
+    transform: scale(1.1);
+}
+
+hr {
+    min-width: 400px;
+    height: 1px;
+    background-color: #000000;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.create-game-button {
+    /* position: absolute; */
+    margin: 1rem auto;
+    min-width: 300px;
+    padding: 0.5rem 2rem;
+    background-color: #1E1E1E;
+    border: 5px solid black;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-size: larger;
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.create-game-button:hover {
+    background-color: #252525;
+    transform: scale(1.1);
+}
+
+#dashboard-bottom {
     background-color: #1E1E1E;
     height: 10rem;
     width: 100%;

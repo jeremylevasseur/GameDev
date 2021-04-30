@@ -1,0 +1,12 @@
+.content-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.player-list {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+}

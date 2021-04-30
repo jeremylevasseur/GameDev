@@ -1,3 +1,106 @@
 html {
     background-color: brown;
 }
+
+hr {
+    width: 100%;
+    border-top: 2px solid white;
+    margin-bottom: 1rem;
+}
+
+.content-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-id-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem 0rem 1rem 0rem;
+}
+
+.game-id-label {
+    color: #FFFFFF;
+    font-family: courier, arial, helvetica;
+    font-size: 35px;
+    margin-right: 10px;
+}
+
+.game-id-value {
+    color: #FFFFFF;
+    font-family: courier, arial, helvetica;
+    font-size: 35px;
+    margin-left: 10px;
+}
+
+.member-count-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0rem;
+}
+
+.member-count-label {
+    color: #FFFFFF;
+    font-family: courier, arial, helvetica;
+    font-size: 35px;
+    margin-right: 10px;
+}
+
+.member-count-value {
+    color: #FFFFFF;
+    font-family: courier, arial, helvetica;
+    font-size: 35px;
+    margin-left: 10px;
+}
+
+.player-list {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+}
+
+.start-game-button {
+    display: none;
+    margin: 0.5rem auto 0.5rem auto;
+    min-width: 300px;
+    padding: 0.5rem 2rem;
+    background-color: #1E1E1E;
+    border: 5px solid black;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-size: larger;
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.start-game-button:hover {
+    background-color: #252525;
+    transform: scale(1.1);
+}
+
+.leave-game-button {
+    margin: 0.5rem auto;
+    min-width: 300px;
+    padding: 0.5rem 2rem;
+    background-color: #FFFFFF;
+    border: 5px solid black;
+    border-radius: 30px;
+    color: #000000;
+    font-size: larger;
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.leave-game-button:hover {
+    background-color: #FFFFFF;
+    transform: scale(1.1);
+}

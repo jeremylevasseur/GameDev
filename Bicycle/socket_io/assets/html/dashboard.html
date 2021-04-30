@@ -13,9 +13,10 @@
     <link href="/css/dashboard.css" rel="stylesheet" />
   </head>
   <body>
+    <!-- Importing Socket IO File -->
+    <script src="/socket.io/socket.io.js"></script>
 
     <!-- NAVBAR -->
-
     <div class="navbar">
       <div class="navbar-title">
         <h1>
@@ -30,22 +31,19 @@
       </div>
     </section>
 
-    <div class="button-wrap">
-      <div class="create-game-button" id="create-game-button">Create Game</div>
-      <div class="join-game-button" id="enter-game-id">Join Game</div>
-    </div>
-
-    <div class="join-game-content">
+    <div class="game-content">
 
       <input type="text" id="game-id" name="game-id" placeholder="Game ID" />
 
       <div class="join-game-button" id="join-game">Join</div>
 
-      <div class="join-game-button" id="cancel-join-game">Cancel</div>
+      <hr>
+
+      <div class="create-game-button" id="create-game-button">Create Game</div>
 
     </div>
 
-    <div id="home-bottom"></div>
+    <div id="dashboard-bottom"></div>
     
     <!-- Importing Custom Javascript Files -->
     <script src="/js/dashboard.js"></script>
