@@ -1,6 +1,6 @@
 # Game Dev Environment
 
-This repository contains two separate directories: **NGINX_Setup** and **React_Setup**. They are to allow for experimentation with either an NGINX web server or the React Framework server.
+This repository contains multiple directories. The two directories **NGINX_Setup** and **React_Setup** are skeleton Docker configurations. They are to allow for experimentation with either an NGINX web server or the React Framework server.
 
 The two setups use Docker to run the required components. Both setups contain four separate apps running in their own Docker containers. They are the following:
 
